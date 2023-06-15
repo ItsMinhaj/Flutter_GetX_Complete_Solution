@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../config/app_routes/routes.dart';
+import '../controller/page_four_controller.dart';
 
 class PageFour extends StatelessWidget {
   const PageFour({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final pageThreeController = Get.find<PageThreeController>();
+    final pageFourController = Get.find<PageFourController>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Page Three"),
@@ -19,13 +21,13 @@ class PageFour extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(pageThreeController.isLoading.value
+              Text(pageFourController.isLoading.value
                   ? "loading..."
-                  : pageThreeController.data.value),
+                  : pageFourController.data.value),
               const SizedBox(height: 30),
               ElevatedButton(
                   onPressed: () {
-                    pageThreeController.fetchData();
+                    pageFourController.fetchData();
                   },
                   child: const Text("Fetch Data")),
               const SizedBox(height: 20),

@@ -12,31 +12,47 @@ class PageThree extends StatelessWidget {
     final pageThreeController = Get.find<PageThreeController>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Page Three"),
+        title: const Text("3 [ ] | Fetch Data | Getx"),
       ),
-      body: Obx(
-        () => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(pageThreeController.isLoading.value
-                  ? "loading..."
-                  : pageThreeController.data.value),
-              const SizedBox(height: 30),
-              ElevatedButton(
-                  onPressed: () {
-                    pageThreeController.fetchData();
-                  },
-                  child: const Text("Fetch Data")),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.pageFour);
-                  },
-                  child: const Text("Next"))
-            ],
+      body: Column(
+        children: [
+          Obx(
+            () => Expanded(
+              child: ListView.builder(
+                itemCount: pageThreeController.dataList3.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(pageThreeController.dataList3[index].title),
+                  );
+                },
+              ),
+            ),
           ),
-        ),
+          Obx(
+            () => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(pageThreeController.isLoading.value
+                      ? "loading..."
+                      : pageThreeController.data.value),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                      onPressed: () {
+                        pageThreeController.fetchData3();
+                      },
+                      child: const Text("Fetch Data")),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.pageFour);
+                      },
+                      child: const Text("Next"))
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
