@@ -1,4 +1,3 @@
-import 'package:dependency_test/controller/page_three_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,31 +13,47 @@ class PageFour extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Page Three"),
+        title: const Text("Page Four"),
       ),
-      body: Obx(
-        () => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(pageFourController.isLoading.value
-                  ? "loading..."
-                  : pageFourController.data.value),
-              const SizedBox(height: 30),
-              ElevatedButton(
-                  onPressed: () {
-                    pageFourController.fetchData();
+      body: Column(
+        children: [
+          Obx(
+            () {
+              return Expanded(
+                child: ListView.builder(
+                  itemCount: pageFourController.data.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                        pageFourController.data[index].title.toString(),
+                      ),
+                    );
                   },
-                  child: const Text("Fetch Data")),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.pageFive);
-                  },
-                  child: const Text("Next"))
-            ],
+                ),
+              );
+            },
           ),
-        ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () async {
+                    await pageFourController.fetchData();
+                  },
+                  child: const Text("Fetch Data"),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.pageFive);
+                    },
+                    child: const Text("Next"))
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,14 +1,18 @@
+import 'package:dependency_test/model/data_list_model.dart';
+import 'package:dependency_test/service/remote_services.dart';
 import 'package:get/get.dart';
 
 class PageFourController extends GetxController {
   final isLoading = false.obs;
-  final data = "No data".obs;
+  final data = <DataListModel>[].obs;
 
-  String fetchData() {
+  Future<void> fetchData() async {
     isLoading(true);
-    Future.delayed(const Duration(seconds: 2));
+    final result = await RemoteServices.fetchData4();
     isLoading(false);
-    data.value = "Hi The is Page Four Controller";
-    return data.value;
+    result.fold((error) => Get.snackbar("Error", error), (dataListModel) {
+      data.value = dataListModel;
+      print(data);
+    });
   }
 }
