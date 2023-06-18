@@ -9,34 +9,45 @@ class PageFive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageFiveController = Get.find<PageFiveController>();
+    final pageFiveController = Get.put(PageFiveController());
     return Scaffold(
       appBar: AppBar(
         title: const Text("Page Five"),
       ),
-      body: Obx(
-        () => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(pageFiveController.isLoading.value
-                  ? "loading..."
-                  : pageFiveController.data.value),
-              const SizedBox(height: 30),
-              ElevatedButton(
-                  onPressed: () {
-                    pageFiveController.fetchData();
-                  },
-                  child: const Text("Fetch Data")),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.pageOne);
-                  },
-                  child: const Text("Next"))
-            ],
+      body: Column(
+        children: [
+          Expanded(
+            child: Obx(() {
+              return ListView.builder(
+                itemCount: pageFiveController.data.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(pageFiveController.data[index].title),
+                  );
+                },
+              );
+            }),
           ),
-        ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 30),
+                ElevatedButton(
+                    onPressed: () async {
+                      await pageFiveController.fetchData();
+                    },
+                    child: const Text("Fetch Data")),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.pageOne);
+                    },
+                    child: const Text("Next"))
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

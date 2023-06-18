@@ -1,14 +1,19 @@
+import 'package:dependency_test/widgets/error_show_dialog.dart';
 import 'package:get/get.dart';
+
+import '../model/post_model.dart';
+import '../service/remote_services.dart';
 
 class PageFiveController extends GetxController {
   final isLoading = false.obs;
-  final data = "No data".obs;
+  final data = <PostModel>[].obs;
 
-  String fetchData() {
+  Future<void> fetchData() async {
     isLoading(true);
-    Future.delayed(const Duration(seconds: 2));
+    final result = await RemoteServices.fetchData5();
     isLoading(false);
-    data.value = "Hi The is Page Five Controller";
-    return data.value;
+    result.fold((error) async => await errorShowDialog(error), (dataListModel) {
+      data.value = dataListModel;
+    });
   }
 }

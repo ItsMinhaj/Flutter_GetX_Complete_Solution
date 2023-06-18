@@ -1,4 +1,5 @@
 import 'package:dependency_test/config/app_pages.dart/pages.dart';
+import 'package:dependency_test/views/page_five.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: AppPages.initail,
+      // initialRoute: AppPages.initail,
+      home: const PageFive(),
       getPages: AppPages.routes,
     );
   }

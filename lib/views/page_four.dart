@@ -13,7 +13,7 @@ class PageFour extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Page Four"),
+        title: const Text("4 [ ] | map((e)) | Dartz | Getx "),
       ),
       body: Column(
         children: [

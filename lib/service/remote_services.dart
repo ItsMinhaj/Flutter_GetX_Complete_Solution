@@ -2,7 +2,10 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:dependency_test/model/data_list_model.dart';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+
+import '../model/post_model.dart';
 
 const postUrl = "https://jsonplaceholder.typicode.com/posts";
 
@@ -58,6 +61,41 @@ class RemoteServices {
       return right(postData);
     } else {
       return left("Failed to fetch post data");
+    }
+  }
+
+  // Approach - 5
+  // Dio - Dartz - Getx
+  // In Dio JsonDecode is prohibited to use
+  static final dio = Dio();
+  static Future<Either<String, List<PostModel>>> fetchData5() async {
+    try {
+      final response = await dio.get(postUrl);
+      if (response.statusCode == 200) {
+        final data = response.data as List<dynamic>;
+        final postData = data.map((e) => PostModel.fromJson(e)).toList();
+
+        return Right(postData);
+      } else {
+        return const Left("Failed to fetch post data");
+      }
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final statusCode = e.response!.statusCode;
+        final errorMessage = 'Error $statusCode';
+        return Left(errorMessage);
+      } else {
+        // Error occurred before the request was completed
+        const errorMessage = 'No Internet';
+        // Return the error message as Left
+        return const Left(errorMessage);
+      }
+    } catch (e) {
+      // Handle other types of errors
+      final errorMessage = 'Error: $e';
+
+      // Return the error message as Left
+      return Left(errorMessage);
     }
   }
 }
