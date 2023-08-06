@@ -1,8 +1,8 @@
-import 'package:dependency_test/widgets/error_show_dialog.dart';
 import 'package:get/get.dart';
 
 import '../model/post_model.dart';
 import '../service/remote_services.dart';
+import '../widgets/error_show_dialog.dart';
 
 class PageFiveController extends GetxController {
   final isLoading = false.obs;

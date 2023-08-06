@@ -1,7 +1,8 @@
-import 'package:dependency_test/config/app_pages.dart/pages.dart';
-import 'package:dependency_test/views/page_five.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'config/app_pages.dart/pages.dart';
+import 'views/page_one.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // initialRoute: AppPages.initail,
-      home: const PageFive(),
+      home: const PageOne(),
       getPages: AppPages.routes,
     );
   }

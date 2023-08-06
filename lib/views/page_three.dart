@@ -1,8 +1,8 @@
-import 'package:dependency_test/controller/page_three_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../config/app_routes/routes.dart';
+import '../controller/page_three_controller.dart';
 
 class PageThree extends StatelessWidget {
   const PageThree({super.key});

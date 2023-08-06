@@ -1,11 +1,12 @@
-import 'package:dependency_test/bindings/dependencies.dart';
-import 'package:dependency_test/config/app_routes/routes.dart';
-import 'package:dependency_test/views/page_five.dart';
-import 'package:dependency_test/views/page_four.dart';
-import 'package:dependency_test/views/page_one.dart';
-import 'package:dependency_test/views/page_three.dart';
-import 'package:dependency_test/views/page_two.dart';
 import 'package:get/get.dart';
+
+import '../../bindings/dependencies.dart';
+import '../../views/page_five.dart';
+import '../../views/page_four.dart';
+import '../../views/page_one.dart';
+import '../../views/page_three.dart';
+import '../../views/page_two.dart';
+import '../app_routes/routes.dart';
 
 class AppPages {
   AppPages._();

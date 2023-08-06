@@ -1,9 +1,9 @@
-import 'package:dependency_test/controller/page_two_controller.dart';
-import 'package:dependency_test/service/remote_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../config/app_routes/routes.dart';
+import '../controller/page_two_controller.dart';
+import '../service/remote_services.dart';
 
 class PageTwo extends StatefulWidget {
   const PageTwo({super.key});

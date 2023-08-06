@@ -1,8 +1,8 @@
-import 'package:dependency_test/config/app_routes/routes.dart';
-import 'package:dependency_test/controller/page_one_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../config/app_routes/routes.dart';
+import '../controller/page_one_controller.dart';
 import '../service/remote_services.dart';
 
 class PageOne extends StatelessWidget {
@@ -10,7 +10,7 @@ class PageOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageOneController = Get.find<PageOneController>();
+    final pageOneController = Get.put(PageOneController());
     return Scaffold(
       appBar: AppBar(
         title: const Text("1 | Start With List | FutureBuilder"),

@@ -1,6 +1,7 @@
-import 'package:dependency_test/model/data_list_model.dart';
-import 'package:dependency_test/service/remote_services.dart';
 import 'package:get/get.dart';
+
+import '../model/data_list_model.dart';
+import '../service/remote_services.dart';
 
 class PageFourController extends GetxController {
   final isLoading = false.obs;

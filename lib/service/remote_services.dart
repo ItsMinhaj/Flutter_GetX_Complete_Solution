@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:dependency_test/model/data_list_model.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
+import '../model/data_list_model.dart';
 import '../model/post_model.dart';
 
 const postUrl = "https://jsonplaceholder.typicode.com/posts";
