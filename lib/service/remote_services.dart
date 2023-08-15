@@ -38,25 +38,25 @@ class RemoteServices {
   }
 
 // Approach 3 --> using getx
-  static final dataList3 = <DataListModel>[];
-  static Future<List<DataListModel>> fetchData3() async {
+  static final dataList3 = <PostModel>[];
+  static Future<List<PostModel>> fetchData3() async {
     final response = await http.get(Uri.parse(postUrl));
     final data = jsonDecode(response.body);
     for (Map<String, dynamic> i in data) {
-      dataList3.add(DataListModel.fromMap(i));
+      dataList3.add(PostModel.fromJson(i));
     }
     print(dataList3);
     return dataList3;
   }
 
 // Approach 4 ---> Dartz , Getx
-
+// Used QuikcType Model
   //static final dataList4 = <DataListModel>[];
-  static Future<Either<String, List<DataListModel>>> fetchData4() async {
+  static Future<Either<String, List<PostModel>>> fetchData4() async {
     final response = await http.get(Uri.parse(postUrl));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body) as List<dynamic>;
-      final postData = data.map((e) => DataListModel.fromMap(e)).toList();
+      final postData = data.map((e) => PostModel.fromJson(e)).toList();
 
       return right(postData);
     } else {
@@ -99,3 +99,6 @@ class RemoteServices {
     }
   }
 }
+
+// There is no difference between QuickType Model and data class generator model.
+// Both works same way, there is no differences.

@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
+import 'package:getx_complete_solution/model/post_model.dart';
 
-import '../model/data_list_model.dart';
 import '../service/remote_services.dart';
 
 class PageThreeController extends GetxController {
   final isLoading = false.obs;
   final data = "No data".obs;
-  final dataList3 = <DataListModel>[].obs;
+  final dataList3 = <PostModel>[].obs;
 
-  Future<List<DataListModel>> fetchData3() async {
+  Future<List<PostModel>> fetchData3() async {
     final data = await RemoteServices.fetchData3();
     if (data.isNotEmpty) {
       dataList3.value = data;
